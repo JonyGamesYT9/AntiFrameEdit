@@ -43,13 +43,13 @@ class AntiFrameEdit extends PluginBase implements Listener
           return;
         }
         $event->setCancelled(true);
-        $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
+        $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
       } else if ($action === PlayerInteractEvent::LEFT_CLICK_BLOCK) {
         if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
           return;
         }
         $event->setCancelled(true);
-        $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
+        $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
       }
     }
   }
