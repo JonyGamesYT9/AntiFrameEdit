@@ -15,7 +15,6 @@
 
 <h3>✒ Permissions:</h3>
 | Permission | Description |
-| --- | --- |
 | `antiframeedit.remove.item` | `Allows a user to put items in a frame.` |
 | --- | --- |
 | `antiframeedit.https.item` | `Allows a user to put an item in any frame.` |
