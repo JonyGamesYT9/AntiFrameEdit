@@ -5,5 +5,5 @@ branches:
 projects:
   AntiFrameEdit:
     path: ""
-    icon: "icon.png"
+    icon: "frame.png"
 ...
