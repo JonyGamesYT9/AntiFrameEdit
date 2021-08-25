@@ -1,1 +1,8 @@
-
+---
+name: AntiFrameEdit
+version: 1.0
+main: JonyGamesYT9\AntiFrameEdit\AntiFrameEdit
+api: [3.0.0]
+author: JonyGamesYT9 
+description: "A plugin so that players on your server cannot use Frames."
+...
