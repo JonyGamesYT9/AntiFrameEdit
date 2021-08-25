@@ -5,4 +5,12 @@ main: JonyGamesYT9\AntiFrameEdit\AntiFrameEdit
 api: [3.0.0]
 author: JonyGamesYT9 
 description: "A plugin so that players on your server cannot use Frames."
+
+permissions:
+ antiframeedit.remove.bypass:
+  description: "Allows a user to remove items in a frame."
+  default: op 
+ antiframeedit.place.bypass:
+  description: "Allows a user to put an item in any frame."
+  default: op
 ...
