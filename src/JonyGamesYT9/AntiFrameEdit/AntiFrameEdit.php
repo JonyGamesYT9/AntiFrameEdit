@@ -1,6 +1,6 @@
 <?php
 
-namespace JonyGamesYT9\AntiFrameEdit\AntiFrameEdit;
+namespace JonyGamesYT9\AntiFrameEdit;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\block\Block;
