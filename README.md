@@ -17,8 +17,8 @@
 
 | Permission | Description |
 | --- | --- |
-| `antiframeedit.remove.item` | Allows a user to put items in a frame. |
-| `antiframeedit.place.item` | Allows a user to put an item in any frame. |
+| `antiframeedit.remove.bypass` | Allows a user to remove items in a frame. |
+| `antiframeedit.place.bypass` | Allows a user to put an item in any frame. |
 
 <h3>📋 Icon:</h3>
 
