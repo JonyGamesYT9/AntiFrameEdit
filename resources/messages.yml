@@ -1,4 +1,9 @@
 ---
+# =========================================
 no.place.item.frame: "§cYou do not have permission to put an item in a frame."
 no.remove.item.frame: "§cYou do not have permission to remove an item in a frame."
+# =========================================
+# Author: JonyGamesYT9 
+# Permissions: antiframeedit.remove.bypass, antiframeedit.place.bypass
+# =========================================
 ...
