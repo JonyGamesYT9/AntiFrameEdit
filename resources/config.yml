@@ -3,7 +3,7 @@
 worlds:
 - "world"
 
-# To add more worlds usage - add id of the item (Not use "")
+# To add more worlds usage - add id of the item
 prohibited-blocks:
 - 1
 ...
