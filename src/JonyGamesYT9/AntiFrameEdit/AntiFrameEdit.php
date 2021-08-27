@@ -7,6 +7,8 @@ use pocketmine\utils\Config;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerInteractEvent;
+use function intval;
+use function str_replace;
 
 /**
 * Class AntiFrameEdit
@@ -79,7 +81,7 @@ class AntiFrameEdit extends PluginBase implements Listener
                 return;
               }
               $hand = $player->getInventory()->getItemInHand();
-              if ($hand->getId() === $item) {
+              if ($hand->getId() === intval($item)) {
                 $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("prohibited.item.usage")));
                 return;
               }
@@ -90,7 +92,7 @@ class AntiFrameEdit extends PluginBase implements Listener
                 return;
               }
               $hand = $player->getInventory()->getItemInHand();
-              if ($hand->getId() === $item) {
+              if ($hand->getId() === intval($item)) {
                 $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("prohibited.item.usage")));
                 return;
               }
