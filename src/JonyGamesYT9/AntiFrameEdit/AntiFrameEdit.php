@@ -55,7 +55,7 @@ class AntiFrameEdit extends PluginBase implements Listener
     $player = $event->getPlayer();
     $block = $event->getBlock();
     $action = $event->getAction();
-    if ($player->getLevel()->getFolderName() === $this->getAllWorld()) {
+    if ($player->getLevel()->getFolderName() === $this->getAllWorlds()) {
       if ($block->getId() === Block::ITEM_FRAME_BLOCK) {
         if ($action === PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
           if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
