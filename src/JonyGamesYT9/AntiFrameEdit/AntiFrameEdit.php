@@ -38,7 +38,7 @@ class AntiFrameEdit extends PluginBase implements Listener
   /**
   * @return string
   */
-  public function getAllWorlds(): string
+  public function getAllWorlds(): array
   {
     foreach ($this->config->get("worlds") as $worlds) {
       self::$world[] = $worlds;
