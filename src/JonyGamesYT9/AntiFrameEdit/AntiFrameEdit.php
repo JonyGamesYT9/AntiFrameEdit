@@ -36,7 +36,7 @@ class AntiFrameEdit extends PluginBase implements Listener
   }
 
   /**
-  * @return string
+  * @return array
   */
   public function getAllWorlds(): array
   {
@@ -55,20 +55,22 @@ class AntiFrameEdit extends PluginBase implements Listener
     $player = $event->getPlayer();
     $block = $event->getBlock();
     $action = $event->getAction();
-    if ($player->getLevel()->getFolderName() === $this->getAllWorlds()) {
-      if ($block->getId() === Block::ITEM_FRAME_BLOCK) {
-        if ($action === PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
-          if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
-            return;
+    foreach ($this->getAllWorlds() as $world) {
+      if ($player->getLevel()->getFolderName() === $world) {
+        if ($block->getId() === Block::ITEM_FRAME_BLOCK) {
+          if ($action === PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
+            if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
+              return;
+            }
+            $event->setCancelled(true);
+            $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
+          } else if ($action === PlayerInteractEvent::LEFT_CLICK_BLOCK) {
+            if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
+              return;
+            }
+            $event->setCancelled(true);
+            $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
           }
-          $event->setCancelled(true);
-          $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
-        } else if ($action === PlayerInteractEvent::LEFT_CLICK_BLOCK) {
-          if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
-            return;
-          }
-          $event->setCancelled(true);
-          $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
         }
       }
     }
