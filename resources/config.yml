@@ -1,0 +1,5 @@
+---
+# To add more worlds usage - and "world_folder_name"
+worlds:
+- "world"
+...
