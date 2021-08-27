@@ -2,4 +2,8 @@
 # To add more worlds usage - and "world_folder_name"
 worlds:
 - "world"
+
+# To add more worlds usage - add id:meta (Not use "")
+prohibited-blocks:
+- 1:0
 ...
