@@ -30,7 +30,7 @@ class AntiFrameEdit extends PluginBase implements Listener
    */
   public function getWorlds(): array
   {
-    return $this->getConfig()->get("worlds");
+    return $this->getConfig()->get("worlds") ?? [];
   }
 
   /**
@@ -38,7 +38,7 @@ class AntiFrameEdit extends PluginBase implements Listener
    */
   public function getProhibitedItems(): array
   {
-    $this->getConfig()->get("prohibited-items");
+    $this->getConfig()->get("prohibited-items") ?? [];
   }
 
   public function onInteractFrame(PlayerInteractEvent $event): void
