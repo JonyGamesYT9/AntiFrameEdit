@@ -4,6 +4,6 @@ worlds:
 - "world"
 
 # To add more worlds usage - add id of the item
-prohibited-blocks:
+prohibited-items:
 - 1
 ...
