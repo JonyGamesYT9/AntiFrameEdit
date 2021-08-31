@@ -1,7 +1,7 @@
 [![](https://poggit.pmmp.io/shield.state/AntiFrameEdit)]
 
 <div align="center">
-<h1>AntiFrameEdit | v2.0<h1>
+<h1>AntiFrameEdit | v3.0<h1>
 <p>A plugin so that players on your server cannot use Frames.</p>
 </div>
 
@@ -28,4 +28,4 @@
 
 | Plugin Version | Pocketmine API | PHP Version | Plugin Status |
 |---|---|---|---|
-| 2.0 | 3.x.x | 7.4 | Completed |
+| 3.0 | 3.x.x | 7.4 | Completed |
