@@ -20,10 +20,10 @@ class AntiFrameEdit extends PluginBase implements Listener
   private Config $config;
 
   /** @var array $world */
-  public $worlds = [];
+  public array $worlds = [];
 
   /** @var array $items */
-  public $items = [];
+  public array $items = [];
 
   /**
   * @return void
@@ -56,11 +56,6 @@ class AntiFrameEdit extends PluginBase implements Listener
   {
     return $this->items ?? [];
   }
-  
-  public function onInteractFrame(PlayerInteractEvent $event): void 
-  {
-      $player = 
-  }
 
   /**
   * @param PlayerInteractEvent $event
@@ -69,38 +64,46 @@ class AntiFrameEdit extends PluginBase implements Listener
   public function onInteractFrame(PlayerInteractEvent $event): void
   {
     $player = $event->getPlayer();
-    $block = $event->getBlock();
+    $block = $e->getBlock();
     $action = $event->getAction();
-    foreach ($this->getAllWorlds() as $world) {
-      foreach ($this->getAllProhibitedItems() as $item) {
-        if ($player->getLevel()->getFolderName() === $world) {
-          if ($block->getId() === Block::ITEM_FRAME_BLOCK) {
-            if ($action === PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
+    switch ($action) {
+      case PlayerInteractEvent::RIGHT_CLICK_BLOCK:
+        foreach ($this->getWorlds() as $world) {
+          if ($player->getLevel()->getFolderName() == $world) {
+            if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
               if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
                 return;
               }
               $hand = $player->getInventory()->getItemInHand();
-              if ($hand->getId() === (int) $item) {
-                $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("prohibited.item.usage")));
-                return;
+              foreach ($this->getProhibitedItems() as $item) {
+                if ($hand->getId() == (int)$item) {
+                  $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("prohibited.item.usage")));
+                  return;
+                }
               }
               $event->setCancelled(true);
-              $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
-            } else if ($action === PlayerInteractEvent::LEFT_CLICK_BLOCK) {
-              if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
-                return;
+              if ($this->config->get("no.place.item.frame") != null) {
+                $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
               }
-              $hand = $player->getInventory()->getItemInHand();
-              if ($hand->getId() === (int) $item) {
-                $player->sendMessage(str_replace(["&"], ["§"], $this->config->get("prohibited.item.usage")));
-                return;
-              }
-              $event->setCancelled(true);
-              $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
             }
           }
         }
-      }
+        break;
+      case PlayerInteractEvent::LEFT_CLICK_BLOCK:
+        foreach ($this->getWorlds() as $world) {
+          if ($player->getLevel()->getFolderName() == $world) {
+            if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
+              if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
+                return;
+              }
+              $event->setCancelled(true);
+              if ($this->config->get("no.remove.item.frame") != null) {
+                $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
+              }
+            }
+          }
+        }
+        break;
     }
   }
 }
