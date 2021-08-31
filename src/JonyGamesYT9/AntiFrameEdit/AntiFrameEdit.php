@@ -11,55 +11,55 @@ use function str_replace;
 
 /**
 * Class AntiFrameEdit
-* @package \JonyGamesYT9\AntiFrameEdit
+* @package JonyGamesYT9\AntiFrameEdit
 */
 class AntiFrameEdit extends PluginBase implements Listener
 {
 
   /** @var Config $config */
-  private $config;
+  private Config $config;
 
-  /** @var Config $messages */
-  private $messages;
+  /** @var array $world */
+  public $worlds = [];
 
-  /** @var string[] $world */
-  public static $world;
-
-  /** @var int[] $items */
-  public static $items;
+  /** @var array $items */
+  public $items = [];
 
   /**
   * @return void
   */
   public function onEnable(): void
   {
-    $this->saveResource("messages.yml");
     $this->saveResource("config.yml");
-    $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML);
     $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+    foreach ($this->config->get("worlds") as $world) {
+      $this->worlds[] = $world;
+    }
+    foreach ($this->config->get("prohibited-items") as $item) {
+      $this->items[] = $item;
+    }
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
 
   /**
   * @return array
   */
-  public function getAllWorlds(): array
+  public function getWorlds(): array
   {
-    foreach ($this->config->get("worlds") as $worlds) {
-      self::$world[] = $worlds;
-    }
-    return self::$world ?? "";
+    return $this->worlds ?? [];
   }
 
   /**
   * @return array
   */
-  public function getAllProhibitedItems(): array
+  public function getProhibitedItems(): array
   {
-    foreach ($this->config->get("prohibited-blocks") as $blocks) {
-      self::$items[] = $blocks;
-    }
-    return self::$items ?? 0;
+    return $this->items ?? [];
+  }
+  
+  public function onInteractFrame(PlayerInteractEvent $event): void 
+  {
+      $player = 
   }
 
   /**
