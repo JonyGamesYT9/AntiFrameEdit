@@ -64,7 +64,7 @@ class AntiFrameEdit extends PluginBase implements Listener
   public function onInteractFrame(PlayerInteractEvent $event): void
   {
     $player = $event->getPlayer();
-    $block = $e->getBlock();
+    $block = $event->getBlock();
     $action = $event->getAction();
     switch ($action) {
       case PlayerInteractEvent::RIGHT_CLICK_BLOCK:
