@@ -3,7 +3,16 @@
 worlds:
 - "world"
 
-# To add more worlds usage - add id of the item
-prohibited-blocks:
+# To add more items/blocks usage - add id of the item
+prohibited-items:
 - 1
+
+# =========================================
+no.place.item.frame: "§cYou do not have permission to put an item in a frame."
+no.remove.item.frame: "§cYou do not have permission to remove an item in a frame."
+prohibited.item.usage: "§cThe item you are trying to put is locked from the frames."
+# =========================================
+# Author: JonyGamesYT9 
+# Permissions: antiframeedit.remove.bypass, antiframeedit.place.bypass
+# =========================================
 ...
