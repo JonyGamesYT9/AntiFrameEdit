@@ -1,12 +1,18 @@
 ---
+# Setting it to "true" in all worlds will be forbidden.
+enable-multiworld-support: false 
 # To add more worlds usage - and "world_folder_name"
 worlds:
 - "world"
-
+# =========================================
+# When being in "false" all the items will be blocked, however if it is in "true" only the items that put in "prohibited-items" will be blocked.
+enable-prohibiteditems-support: false
 # To add more items/blocks usage - add id of the item
 prohibited-items:
-- 1
-
+- 1 # Stone Block
+# =========================================
+# Being in "true" only those who have the "antiframeedit.place.bypass" permission will be able to put things in the frames, on the other hand if it is in "false" everyone will be able to put things in the frames.
+only-admin-usage: true
 # =========================================
 no.place.item.frame: "§cYou do not have permission to put an item in a frame."
 no.remove.item.frame: "§cYou do not have permission to remove an item in a frame."
