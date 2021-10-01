@@ -32,8 +32,14 @@ class AntiFrameEdit extends PluginBase implements Listener
   {
     $this->saveResource("config.yml");
     $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-    foreach ($this->config->get("worlds") as $world) {
-      $this->worlds[] = $world;
+    if ($this->config->get("enable-multiworld-support") === true) {
+      foreach ($this->config->get("worlds") as $world) {
+        $this->worlds[] = $world;
+      }
+    } else {
+      foreach ($this->getServer()->getLevels() as $world) {
+        $this->worlds[] = $world->getFolderName();
+      }
     }
     foreach ($this->config->get("prohibited-items") as $item) {
       $this->items[] = $item;
@@ -71,8 +77,10 @@ class AntiFrameEdit extends PluginBase implements Listener
         foreach ($this->getWorlds() as $world) {
           if ($player->getLevel()->getFolderName() == $world) {
             if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
-              if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
-                return;
+              if ($this->config->get("only-admin-usage") === true) {
+                if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
+                  return;
+                }
               }
               $hand = $player->getInventory()->getItemInHand();
               foreach ($this->getProhibitedItems() as $item) {
@@ -93,8 +101,10 @@ class AntiFrameEdit extends PluginBase implements Listener
         foreach ($this->getWorlds() as $world) {
           if ($player->getLevel()->getFolderName() == $world) {
             if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
-              if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
-                return;
+              if ($this->config->get("only-admin-usage") === true) {
+                if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
+                  return;
+                }
               }
               $event->setCancelled(true);
               if ($this->config->get("no.remove.item.frame") != null) {
