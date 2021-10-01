@@ -5,8 +5,6 @@ enable-multiworld-support: false # Methods: (true, false)
 worlds:
 - "world"
 # =========================================
-# When being in "false" all the items will be blocked, however if it is in "true" only the items that put in "prohibited-items" will be blocked.
-enable-prohibiteditems-support: false # Methods: (true, false)
 # To add more items/blocks usage - add id of the item
 prohibited-items:
 - 1 # Stone Block
