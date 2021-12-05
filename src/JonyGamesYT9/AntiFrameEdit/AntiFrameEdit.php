@@ -37,7 +37,7 @@ class AntiFrameEdit extends PluginBase implements Listener
         $this->worlds[] = $world;
       }
     } else {
-      foreach ($this->getServer()->getLevels() as $world) {
+      foreach ($this->getServer()->getWorlds() as $world) {
         $this->worlds[] = $world->getFolderName();
       }
     }
@@ -75,7 +75,7 @@ class AntiFrameEdit extends PluginBase implements Listener
     switch ($action) {
       case PlayerInteractEvent::RIGHT_CLICK_BLOCK:
         foreach ($this->getWorlds() as $world) {
-          if ($player->getLevel()->getFolderName() == $world) {
+          if ($player->getWorld()->getFolderName() == $world) {
             if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
               if ($this->config->get("only-admin-usage") === true) {
                 if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
@@ -99,7 +99,7 @@ class AntiFrameEdit extends PluginBase implements Listener
         break;
       case PlayerInteractEvent::LEFT_CLICK_BLOCK:
         foreach ($this->getWorlds() as $world) {
-          if ($player->getLevel()->getFolderName() == $world) {
+          if ($player->getWorld()->getFolderName() == $world) {
             if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
               if ($this->config->get("only-admin-usage") === true) {
                 if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
