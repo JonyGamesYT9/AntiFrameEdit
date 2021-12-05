@@ -3,7 +3,9 @@
 namespace JonyGamesYT9\AntiFrameEdit;
 
 use pocketmine\block\Block;
+use pocketmine\block\BlockLegacyIds;
 use pocketmine\utils\Config;
+use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -76,9 +78,9 @@ class AntiFrameEdit extends PluginBase implements Listener
       case PlayerInteractEvent::RIGHT_CLICK_BLOCK:
         foreach ($this->getWorlds() as $world) {
           if ($player->getWorld()->getFolderName() == $world) {
-            if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
+            if ($block->getId() == BlockLegacyIds::ITEM_FRAME_BLOCK) {
               if ($this->config->get("only-admin-usage") === true) {
-                if ($player->hasPermission("antiframeedit.place.bypass") or $player->isOp()) {
+                if ($player->hasPermission("antiframeedit.place.bypass") or Server::getInstance()->isOp($player->getName())) {
                   return;
                 }
               }
@@ -89,7 +91,7 @@ class AntiFrameEdit extends PluginBase implements Listener
                   return;
                 }
               }
-              $event->setCancelled(true);
+              $event->cancel();
               if ($this->config->get("no.place.item.frame") != null) {
                 $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.place.item.frame")));
               }
@@ -100,13 +102,13 @@ class AntiFrameEdit extends PluginBase implements Listener
       case PlayerInteractEvent::LEFT_CLICK_BLOCK:
         foreach ($this->getWorlds() as $world) {
           if ($player->getWorld()->getFolderName() == $world) {
-            if ($block->getId() == Block::ITEM_FRAME_BLOCK) {
+            if ($block->getId() == BlockLegacyIds::ITEM_FRAME_BLOCK) {
               if ($this->config->get("only-admin-usage") === true) {
-                if ($player->hasPermission("antiframeedit.remove.bypass") or $player->isOp()) {
+                if ($player->hasPermission("antiframeedit.remove.bypass") or Server::getInstance()->isOp($player->getName())) {
                   return;
                 }
               }
-              $event->setCancelled(true);
+              $event->cancel();
               if ($this->config->get("no.remove.item.frame") != null) {
                 $player->sendPopup(str_replace(["&"], ["§"], $this->config->get("no.remove.item.frame")));
               }
