@@ -37,7 +37,7 @@ class AntiFrameEdit extends PluginBase implements Listener
         $this->worlds[] = $world;
       }
     } else {
-      foreach ($this->getServer()->getWorlds() as $world) {
+      foreach ($this->getServer()->getWorldManager()->getWorlds() as $world) {
         $this->worlds[] = $world->getFolderName();
       }
     }
